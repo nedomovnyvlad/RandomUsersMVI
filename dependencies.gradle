@@ -1,0 +1,74 @@
+ext.versions = [
+        minSdk             : 21,
+        targetSdk          : 31,
+        compileSdk         : 31,
+
+        versionCode        : 1,
+        versionName        : "1.0.0",
+
+        kotlin             : '1.6.0',
+
+        androidGradlePlugin: '7.0.2',
+        versionsPlugin     : '0.39.0',
+
+        appCompatLibs      : '1.4.0',
+        recyclerView       : '1.2.0',
+        material           : '1.4.0',
+
+        coreKtx            : '1.7.0',
+        viewModelKtx       : '2.4.0',
+        fragmentKtx        : '1.4.0',
+
+        koin               : '3.1.4',
+        room               : '2.3.0',
+        okHttp             : '4.9.3',
+        retrofit           : '2.9.0',
+        gson               : '2.8.9',
+        coroutines         : '1.6.0-RC',
+        glide              : '4.12.0',
+
+        constraintLayout   : '2.1.2',
+
+        timber             : '5.0.1',
+]
+
+ext.gradlePlugins = [
+        android       : "com.android.tools.build:gradle:$versions.androidGradlePlugin",
+        kotlinPlugin  : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
+        versionsPlugin: "com.github.ben-manes:gradle-versions-plugin:$versions.versionsPlugin",
+]
+
+ext.libraries = [
+        kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin",
+
+        appCompat               : "androidx.appcompat:appcompat:$versions.appCompatLibs",
+        recyclerView            : "androidx.recyclerview:recyclerview:$versions.recyclerView",
+        material                : "com.google.android.material:material:$versions.material",
+
+        coreKtx                 : "androidx.core:core-ktx:$versions.coreKtx",
+        viewModelKtx            : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.viewModelKtx",
+        fragmentKtx             : "androidx.fragment:fragment-ktx:$versions.fragmentKtx",
+
+        koin                    : "io.insert-koin:koin-core:$versions.koin",
+        koinAndroid             : "io.insert-koin:koin-android:$versions.koin",
+
+        room                    : "androidx.room:room-runtime:$versions.room",
+        roomCompiler            : "androidx.room:room-compiler:$versions.room",
+
+        okHttp                  : "com.squareup.okhttp3:okhttp:$versions.okHttp",
+        okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+
+        retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        retrofitGsonConverter   : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+        retrofitRxJavaAdapter   : "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$versions.retrofitRxJavaAdapter",
+
+        gson                    : "com.google.code.gson:gson:$versions.gson",
+
+        coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
+
+        glide                   : "com.github.bumptech.glide:glide:$versions.glide",
+
+        constraintLayout        : "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
+
+        timber                  : "com.jakewharton.timber:timber:$versions.timber",
+]
