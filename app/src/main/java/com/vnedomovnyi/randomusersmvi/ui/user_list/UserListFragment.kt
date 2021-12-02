@@ -15,7 +15,7 @@ import timber.log.Timber
 class UserListFragment : Fragment() {
 
     private val userListViewModel: UserListViewModel by mviViewModel()
-    private var onStopDisposables = CompositeDisposable()
+    private val onStopDisposables = CompositeDisposable()
 
     companion object {
         fun newInstance() = UserListFragment()
