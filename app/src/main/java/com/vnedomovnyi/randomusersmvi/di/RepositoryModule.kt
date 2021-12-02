@@ -5,5 +5,5 @@ import com.vnedomovnyi.randomusersmvi.repository.UserRepositoryImpl
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    factory<UserRepository> { UserRepositoryImpl(get()) }
+    factory<UserRepository> { UserRepositoryImpl(get(), get()) }
 }

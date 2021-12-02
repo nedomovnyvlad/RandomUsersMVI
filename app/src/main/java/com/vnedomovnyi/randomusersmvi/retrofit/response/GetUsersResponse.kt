@@ -14,12 +14,12 @@ data class ApiUser(
 
 fun ApiUser.toUser(): User {
     return User(
-        name.first,
-        name.last,
-        email,
-        location.city,
-        location.state,
-        picture.largePhotoUrl,
+        firstName = name.first,
+        lastName = name.last,
+        email = email,
+        city = location.city,
+        state = location.state,
+        photoUrl = picture.largePhotoUrl,
     )
 }
 
