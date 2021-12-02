@@ -1,27 +1,13 @@
 package com.vnedomovnyi.randomusersmvi.repository
 
+import com.vnedomovnyi.randomusersmvi.USER_COUNT
 import com.vnedomovnyi.randomusersmvi.entity.User
+import com.vnedomovnyi.randomusersmvi.retrofit.UserService
+import com.vnedomovnyi.randomusersmvi.retrofit.response.toUser
 
-class UserRepositoryImpl : UserRepository {
+class UserRepositoryImpl(private val userService: UserService) : UserRepository {
     override fun getUsers(): List<User> {
-        // TODO: Replace with a network request
-        return listOf(
-            User(
-                "User",
-                "1",
-                "email",
-                "city",
-                "state",
-                "https://lh3.googleusercontent.com/ykuq3KjWWVgwt9fV1zh1ZzAhXJF6pKV5tbUGH0BZIBBP5yIICcavfO-knvLifR1rv0uBiEnlngw=w640-h400-e365",
-            ),
-            User(
-                "User",
-                "2",
-                "email",
-                "city",
-                "state",
-                "https://lh3.googleusercontent.com/ykuq3KjWWVgwt9fV1zh1ZzAhXJF6pKV5tbUGH0BZIBBP5yIICcavfO-knvLifR1rv0uBiEnlngw=w640-h400-e365",
-            ),
-        )
+        val response = userService.getUsers(USER_COUNT).execute().body()
+        return response!!.users.map { it.toUser() }
     }
 }

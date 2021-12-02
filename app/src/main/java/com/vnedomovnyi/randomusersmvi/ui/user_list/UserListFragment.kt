@@ -12,6 +12,7 @@ import com.vnedomovnyi.randomusersmvi.databinding.UserListFragmentBinding
 import com.vnedomovnyi.randomusersmvi.ui.base.mviViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
+import timber.log.Timber
 
 class UserListFragment : Fragment() {
 
@@ -52,6 +53,8 @@ class UserListFragment : Fragment() {
             adapter.submitList(viewState.users ?: emptyList())
 
             error?.consume {
+                // TODO: Implement general error logging
+                Timber.e(it.cause)
                 Toast.makeText(requireContext(), "Error occurred", Toast.LENGTH_SHORT).show()
             }
         }

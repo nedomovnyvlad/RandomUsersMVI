@@ -3,6 +3,7 @@ package com.vnedomovnyi.randomusersmvi
 import android.app.Application
 import com.vnedomovnyi.randomusersmvi.BuildConfig.DEBUG
 import com.vnedomovnyi.randomusersmvi.di.appModule
+import com.vnedomovnyi.randomusersmvi.di.networkModule
 import com.vnedomovnyi.randomusersmvi.di.repositoryModule
 import com.vnedomovnyi.randomusersmvi.di.useCaseModule
 import org.koin.android.ext.koin.androidContext
@@ -25,6 +26,7 @@ class RandomUserApplication : Application() {
     companion object {
         private val MODULES = listOf(
             appModule,
+            networkModule,
             repositoryModule,
             useCaseModule,
         )
