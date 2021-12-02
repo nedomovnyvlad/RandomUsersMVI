@@ -58,7 +58,7 @@ class UserListFragment : Fragment() {
 
             error?.consume {
                 // TODO: Implement general error logging
-                Timber.e(it.cause)
+                Timber.e(it)
                 Toast.makeText(requireContext(), "Error occurred", Toast.LENGTH_SHORT).show()
             }
         }
