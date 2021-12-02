@@ -1,7 +1,7 @@
 package com.vnedomovnyi.randomusersmvi
 
 import android.app.Application
-import androidx.viewbinding.BuildConfig
+import com.vnedomovnyi.randomusersmvi.BuildConfig.DEBUG
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -12,7 +12,7 @@ class RandomUserApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+        if (DEBUG) Timber.plant(Timber.DebugTree())
 
         startKoin {
             androidContext(this@RandomUserApplication)
