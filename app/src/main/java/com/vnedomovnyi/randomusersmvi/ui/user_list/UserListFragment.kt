@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vnedomovnyi.randomusersmvi.R
@@ -50,6 +51,9 @@ class UserListFragment : Fragment() {
 
     private fun render(viewState: UserListState) {
         with(viewState) {
+            binding.progressBar.isVisible = viewState.isLoading
+            binding.recyclerView.isVisible = users != null
+
             adapter.submitList(viewState.users ?: emptyList())
 
             error?.consume {
