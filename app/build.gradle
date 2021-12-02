@@ -61,6 +61,10 @@ dependencies {
     implementation libraries.retrofit
     implementation libraries.retrofitGsonConverter
 
+    implementation libraries.rxAndroid
+    implementation libraries.rxKotlin
+    implementation libraries.rxRelay
+
     implementation libraries.gson
 
     implementation libraries.coroutines

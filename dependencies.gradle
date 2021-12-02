@@ -27,6 +27,10 @@ ext.versions = [
         coroutines         : '1.6.0-RC',
         glide              : '4.12.0',
 
+        rxAndroid          : '3.0.0',
+        rxKotlin           : '3.0.1',
+        rxRelay            : '3.0.1',
+
         constraintLayout   : '2.1.2',
 
         timber             : '5.0.1',
@@ -61,6 +65,10 @@ ext.libraries = [
         retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
         retrofitGsonConverter   : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
         retrofitRxJavaAdapter   : "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$versions.retrofitRxJavaAdapter",
+
+        rxAndroid               : "io.reactivex.rxjava3:rxandroid:$versions.rxAndroid",
+        rxKotlin                : "io.reactivex.rxjava3:rxkotlin:$versions.rxKotlin",
+        rxRelay                 : "com.jakewharton.rxrelay3:rxrelay:$versions.rxRelay",
 
         gson                    : "com.google.code.gson:gson:$versions.gson",
 
