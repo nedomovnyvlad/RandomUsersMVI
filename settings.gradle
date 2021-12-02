@@ -8,5 +8,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "RandomUsersMVI"
 include ':app'
-include ':core'
-include ':core'
