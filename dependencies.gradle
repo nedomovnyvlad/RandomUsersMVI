@@ -34,6 +34,15 @@ ext.versions = [
         constraintLayout   : '2.1.2',
 
         timber             : '5.0.1',
+
+        mockitoKotlin      : '1.6.0',
+        junit              : '4.13.2',
+        mockitoAll         : '2.0.2-beta',
+        mockitoCore        : '4.1.0',
+        hamcrest           : '1.3',
+        testRunner         : '1.0.2',
+        testRules          : '1.0.2',
+        dexMaker           : '1.2',
 ]
 
 ext.gradlePlugins = [
@@ -80,4 +89,19 @@ ext.libraries = [
         constraintLayout        : "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
 
         timber                  : "com.jakewharton.timber:timber:$versions.timber",
+
+        koinTest                : "io.insert-koin:koin-test:$versions.koin",
+        koinJUnit               : "io.insert-koin:koin-test-junit4:$versions.koin",
+
+        mockitoKotlin           : "com.nhaarman:mockito-kotlin:$versions.mockitoKotlin",
+        junit                   : "junit:junit:$versions.junit",
+        mockitoInline           : "org.mockito:mockito-inline:$versions.mockitoCore",
+        hamcrest                : "org.hamcrest:hamcrest-all:$versions.hamcrest",
+
+        testRunner              : "com.android.support.test:runner:$versions.testRunner",
+        testRules               : "com.android.support.test:rules:$versions.testRules",
+
+        mockitoCore             : "org.mockito:mockito-core:$versions.mockitoCore",
+        dexMaker                : "com.google.dexmaker:dexmaker:$versions.dexMaker",
+        dexMakerMockito         : "com.google.dexmaker:dexmaker-mockito:$versions.dexMaker",
 ]

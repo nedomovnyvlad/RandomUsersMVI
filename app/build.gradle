@@ -15,6 +15,8 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode versions.versionCode
         versionName versions.versionName
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -37,6 +39,16 @@ android {
 
     buildFeatures {
         viewBinding true
+    }
+
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+
+    lintOptions {
+        error("VisibleForTests")
     }
 }
 
@@ -79,4 +91,21 @@ dependencies {
     implementation libraries.constraintLayout
 
     implementation libraries.timber
+
+    testImplementation libraries.koinTest
+    testImplementation libraries.koinJUnit
+
+    testImplementation libraries.mockitoKotlin
+    testImplementation libraries.junit
+    testImplementation libraries.mockitoCore
+    testImplementation libraries.hamcrest
+    testImplementation libraries.mockitoInline
+
+    androidTestImplementation libraries.testRunner
+    androidTestImplementation libraries.testRules
+
+    androidTestImplementation libraries.junit
+    androidTestImplementation libraries.mockitoCore
+    androidTestImplementation libraries.dexMaker
+    androidTestImplementation libraries.dexMakerMockito
 }
