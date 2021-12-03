@@ -29,4 +29,8 @@ class UserRepositoryImpl(
             .flatMapCompletable { userDao.insert(it) }
             .toMaybe()
     }
+
+    override fun deleteUser(userId: Int) {
+        userDao.delete(userId)
+    }
 }

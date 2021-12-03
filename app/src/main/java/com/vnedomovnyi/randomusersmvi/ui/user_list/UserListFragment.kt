@@ -41,6 +41,8 @@ class UserListFragment : Fragment() {
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
+
+        adapter.onItemClickListener = userListViewModel::deleteUser
     }
 
     override fun onStart() {

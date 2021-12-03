@@ -4,4 +4,5 @@ import com.vnedomovnyi.randomusersmvi.ui.base.MviAction
 
 sealed class UserListAction : MviAction {
     object LoadUsersAction : UserListAction()
+    data class DeleteUserAction(val userId: Int) : UserListAction()
 }

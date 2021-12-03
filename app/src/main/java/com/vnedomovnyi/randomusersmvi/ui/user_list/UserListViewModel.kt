@@ -18,4 +18,8 @@ class UserListViewModel(savedStateHandle: SavedStateHandle) :
             accept(UserListAction.LoadUsersAction)
         }
     }
+
+    fun deleteUser(userId: Int) {
+        accept(UserListAction.DeleteUserAction(userId))
+    }
 }
