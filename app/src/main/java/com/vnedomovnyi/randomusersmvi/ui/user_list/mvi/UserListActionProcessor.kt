@@ -7,15 +7,12 @@ import com.vnedomovnyi.randomusersmvi.ui.user_list.mvi.UserListResult.*
 import com.vnedomovnyi.randomusersmvi.use_case.DeleteUser
 import com.vnedomovnyi.randomusersmvi.use_case.LoadUsers
 import io.reactivex.rxjava3.core.Observable
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class UserListActionProcessor : MviActionsProcessor<UserListAction, UserListResult>(),
-    KoinComponent {
-
-    private val schedulersProvider: SchedulersProvider by inject()
-    private val loadUsers: LoadUsers by inject()
-    private val deleteUser: DeleteUser by inject()
+class UserListActionProcessor(
+    private val schedulersProvider: SchedulersProvider,
+    private val loadUsers: LoadUsers,
+    deleteUser: DeleteUser,
+) : MviActionsProcessor<UserListAction, UserListResult>() {
 
     override fun getActionProcessors(shared: Observable<UserListAction>): List<Observable<UserListResult>> =
         listOf(

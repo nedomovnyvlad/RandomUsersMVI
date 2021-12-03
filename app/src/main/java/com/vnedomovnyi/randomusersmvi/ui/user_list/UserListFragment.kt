@@ -10,16 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vnedomovnyi.randomusersmvi.R
 import com.vnedomovnyi.randomusersmvi.databinding.UserListFragmentBinding
-import com.vnedomovnyi.randomusersmvi.ui.base.mviViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
+import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import timber.log.Timber
 
 class UserListFragment : Fragment() {
 
     private lateinit var binding: UserListFragmentBinding
 
-    private val userListViewModel: UserListViewModel by mviViewModel()
+    private val userListViewModel: UserListViewModel by stateViewModel()
     private val adapter = UserAdapter()
     private val onStopDisposables = CompositeDisposable()
 

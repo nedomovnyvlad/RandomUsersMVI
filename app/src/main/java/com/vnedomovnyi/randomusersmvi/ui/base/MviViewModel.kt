@@ -1,10 +1,7 @@
 package com.vnedomovnyi.randomusersmvi.ui.base
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.jakewharton.rxrelay3.PublishRelay
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableTransformer
@@ -23,7 +20,7 @@ abstract class MviViewModel<A : MviAction, R : MviResult, VS : MviViewState<R>>(
     private val actionsSource = PublishRelay.create<A>()
     private val disposable = actionsSource.subscribe(actionsObserver)
 
-    private val viewStatesObservable: Observable<VS> by lazy {
+    val viewStatesObservable: Observable<VS> by lazy {
         actionsObserver
             .compose(actionProcessor)
             .scan(viewState, ::reduce)
@@ -60,13 +57,4 @@ abstract class MviViewModel<A : MviAction, R : MviResult, VS : MviViewState<R>>(
     companion object {
         private const val VIEW_STATE_KEY = "ViewStateKey"
     }
-}
-
-inline fun <reified VM : MviViewModel<*, *, *>> Fragment.mviViewModel() = lazy {
-    ViewModelProvider(
-        this,
-        SavedStateViewModelFactory(
-            requireActivity().application, this
-        )
-    )[VM::class.java]
 }

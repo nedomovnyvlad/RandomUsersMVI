@@ -6,10 +6,13 @@ import com.vnedomovnyi.randomusersmvi.ui.user_list.mvi.UserListAction
 import com.vnedomovnyi.randomusersmvi.ui.user_list.mvi.UserListActionProcessor
 import com.vnedomovnyi.randomusersmvi.ui.user_list.mvi.UserListResult
 
-class UserListViewModel(savedStateHandle: SavedStateHandle) :
+class UserListViewModel(
+    savedStateHandle: SavedStateHandle,
+    actionProcessor: UserListActionProcessor
+) :
     MviViewModel<UserListAction, UserListResult, UserListState>(
         savedStateHandle,
-        UserListActionProcessor(),
+        actionProcessor,
         UserListState.default()
     ) {
 
