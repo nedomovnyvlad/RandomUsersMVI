@@ -19,7 +19,7 @@ abstract class MviActionsProcessor<A : MviAction, R : MviResult> : ObservableTra
     }
 }
 
-fun <A : MviAction, R : MviResult> createActionProcessor(
+fun <A : MviAction, R : MviResult> createUnitActionProcessor(
     schedulersProvider: SchedulersProvider? = null,
     initialResult: ((a: A) -> R?)? = null,
     onErrorResult: ((t: Throwable) -> R)? = null,
@@ -27,26 +27,63 @@ fun <A : MviAction, R : MviResult> createActionProcessor(
 ) = ObservableTransformer<A, R> { actions ->
     actions
         .switchMap { action ->
-            var observable = asObservable<R> {
+            val observable = asObservable<R> {
                 doStuff(action)
             }
 
-            schedulersProvider?.let {
-                observable = observable
-                    .subscribeOn(schedulersProvider.subscriptionScheduler())
-                    .observeOn(schedulersProvider.observationScheduler())
-            }
-
-            if (onErrorResult != null) {
-                observable = observable.onErrorReturn { t -> onErrorResult.invoke(t) }
-            }
-
-            if (initialResult != null) {
-                observable = observable.startWith(Single.just(initialResult.invoke(action)))
-            }
-
-            observable
+            addObservableFeatures(
+                observable,
+                action,
+                schedulersProvider,
+                initialResult,
+                onErrorResult,
+            )
         }
+}
+
+fun <A : MviAction, R : MviResult> createObservableActionProcessor(
+    schedulersProvider: SchedulersProvider? = null,
+    initialResult: ((a: A) -> R?)? = null,
+    onErrorResult: ((t: Throwable) -> R)? = null,
+    observableArg: Observable<R>
+) = ObservableTransformer<A, R> { actions ->
+    actions
+        .switchMap { action ->
+            addObservableFeatures(
+                observableArg,
+                action,
+                schedulersProvider,
+                initialResult,
+                onErrorResult
+            )
+        }
+}
+
+fun <A : MviAction, R : MviResult> addObservableFeatures(
+    observableArg: Observable<R>,
+    action: A,
+    schedulersProvider: SchedulersProvider? = null,
+    initialResult: ((a: A) -> R?)? = null,
+    onErrorResult: ((t: Throwable) -> R)? = null,
+): Observable<R> {
+    var observable = observableArg
+
+    schedulersProvider?.let {
+        observable = observable
+            .subscribeOn(schedulersProvider.subscriptionScheduler())
+            .observeOn(schedulersProvider.observationScheduler())
+    }
+
+    if (onErrorResult != null) {
+        observable = observable.onErrorReturn { t -> onErrorResult.invoke(t) }
+    }
+
+    if (initialResult != null) {
+        observable =
+            observable.startWith(Single.just(initialResult.invoke(action)))
+    }
+
+    return observable
 }
 
 fun <T> asObservable(doStuff: ObservableEmitter<T>.() -> Unit): Observable<T> =

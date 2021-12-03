@@ -5,24 +5,28 @@ import com.vnedomovnyi.randomusersmvi.db.UserDao
 import com.vnedomovnyi.randomusersmvi.entity.User
 import com.vnedomovnyi.randomusersmvi.retrofit.UserService
 import com.vnedomovnyi.randomusersmvi.retrofit.response.toUser
+import io.reactivex.rxjava3.core.Maybe
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 
 class UserRepositoryImpl(
     private val userService: UserService,
     private val userDao: UserDao,
 ) : UserRepository {
 
-    override fun getUsers(): List<User> {
-        val users = userDao.get()
+    override fun loadUsers(): Observable<List<User>> {
+        return userDao.subscribe().firstOrError()
+            .filter { list -> list.isNotEmpty() }
+            .switchIfEmpty(loadUsersFromNetwork())
+            .toObservable()
+            .mergeWith(userDao.subscribe())
+    }
 
-        if (users.isNotEmpty()) {
-            return users
-        }
-
-        val response = userService.getUsers(USER_COUNT).execute().body()
-        val newUsers = response!!.users.map { it.toUser() }
-
-        userDao.insert(newUsers)
-
-        return newUsers
+    private fun loadUsersFromNetwork(): Maybe<List<User>> {
+        return Single.fromCallable { userService.getUsers(USER_COUNT).execute() }
+            .map { it.body() }
+            .map { it!!.users.map { apiUser -> apiUser.toUser() } }
+            .flatMapCompletable { userDao.insert(it) }
+            .toMaybe()
     }
 }

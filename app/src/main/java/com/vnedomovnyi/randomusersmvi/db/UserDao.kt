@@ -4,13 +4,15 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.vnedomovnyi.randomusersmvi.entity.User
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Observable
 
 @Dao
 interface UserDao {
 
     @Query("SELECT * FROM users")
-    fun get(): List<User>
+    fun subscribe(): Observable<List<User>>
 
     @Insert
-    fun insert(users: List<User>)
+    fun insert(users: List<User>): Completable
 }

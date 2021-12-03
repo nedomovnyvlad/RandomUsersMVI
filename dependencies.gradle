@@ -57,6 +57,7 @@ ext.libraries = [
         koinAndroid             : "io.insert-koin:koin-android:$versions.koin",
 
         room                    : "androidx.room:room-runtime:$versions.room",
+        roomRx                  : "androidx.room:room-rxjava3:$versions.room",
         roomCompiler            : "androidx.room:room-compiler:$versions.room",
 
         okHttp                  : "com.squareup.okhttp3:okhttp:$versions.okHttp",

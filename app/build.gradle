@@ -57,6 +57,7 @@ dependencies {
     implementation libraries.koinAndroid
 
     implementation libraries.room
+    implementation libraries.roomRx
     kapt libraries.roomCompiler
 
     implementation libraries.okHttp
