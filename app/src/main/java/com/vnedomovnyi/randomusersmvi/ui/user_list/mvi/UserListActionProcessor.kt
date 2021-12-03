@@ -20,8 +20,8 @@ class UserListActionProcessor(
             shared.connect(deleteUserProcessor),
         )
 
-    private val loadUsersProcessor =
-        createObservableActionProcessor<LoadUsersAction, UserListResult>(
+    private val loadUsersProcessor
+        get() = createObservableActionProcessor<LoadUsersAction, UserListResult>(
             schedulersProvider,
             { InProgressResult },
             ::ErrorResult,
