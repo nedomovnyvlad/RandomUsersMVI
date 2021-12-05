@@ -107,6 +107,7 @@ dependencies {
     androidTestImplementation libraries.dexMaker
     androidTestImplementation libraries.dexMakerMockito
     androidTestImplementation libraries.espresso
+    androidTestImplementation libraries.espressoContrib
     androidTestImplementation libraries.mockWebServer
 
     androidTestImplementation libraries.koinTest

@@ -107,6 +107,7 @@ ext.libraries = [
         dexMakerMockito         : "com.google.dexmaker:dexmaker-mockito:$versions.dexMaker",
 
         espresso                : "com.android.support.test.espresso:espresso-core:$versions.espresso",
+        espressoContrib         : "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
 
         mockWebServer           : "com.squareup.okhttp3:mockwebserver:$versions.okHttp",
 ]
