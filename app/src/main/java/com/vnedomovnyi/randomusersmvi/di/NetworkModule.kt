@@ -2,6 +2,8 @@ package com.vnedomovnyi.randomusersmvi.di
 
 import com.google.gson.Gson
 import com.vnedomovnyi.randomusersmvi.BASE_URL
+import com.vnedomovnyi.randomusersmvi.network.ChangeableBaseUrl
+import com.vnedomovnyi.randomusersmvi.network.ChangeableBaseUrlInterceptor
 import com.vnedomovnyi.randomusersmvi.retrofit.UserService
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
@@ -18,6 +20,7 @@ val networkModule = module {
 
 private fun provideOkHttpClient() =
     OkHttpClient.Builder()
+        .addInterceptor(ChangeableBaseUrlInterceptor(ChangeableBaseUrl))
         .build()
 
 private fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson) = Retrofit.Builder()

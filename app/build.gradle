@@ -109,4 +109,6 @@ dependencies {
     androidTestImplementation libraries.mockitoCore
     androidTestImplementation libraries.dexMaker
     androidTestImplementation libraries.dexMakerMockito
+    androidTestImplementation libraries.espresso
+    androidTestImplementation libraries.mockWebServer
 }

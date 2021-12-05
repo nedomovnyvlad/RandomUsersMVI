@@ -43,6 +43,7 @@ ext.versions = [
         testRunner         : '1.0.2',
         testRules          : '1.0.2',
         dexMaker           : '1.2',
+        espresso           : '3.4.0',
 ]
 
 ext.gradlePlugins = [
@@ -104,4 +105,8 @@ ext.libraries = [
         mockitoCore             : "org.mockito:mockito-core:$versions.mockitoCore",
         dexMaker                : "com.google.dexmaker:dexmaker:$versions.dexMaker",
         dexMakerMockito         : "com.google.dexmaker:dexmaker-mockito:$versions.dexMaker",
+
+        espresso                : "com.android.support.test.espresso:espresso-core:$versions.espresso",
+
+        mockWebServer           : "com.squareup.okhttp3:mockwebserver:$versions.okHttp",
 ]
