@@ -13,7 +13,6 @@ import com.vnedomovnyi.randomusersmvi.databinding.UserListFragmentBinding
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
-import timber.log.Timber
 
 class UserListFragment : Fragment() {
 
@@ -59,8 +58,6 @@ class UserListFragment : Fragment() {
             adapter.submitList(viewState.users ?: emptyList())
 
             error?.consume {
-                // TODO: Implement general error logging
-                Timber.e(it)
                 Toast.makeText(requireContext(), "Error occurred", Toast.LENGTH_SHORT).show()
             }
         }

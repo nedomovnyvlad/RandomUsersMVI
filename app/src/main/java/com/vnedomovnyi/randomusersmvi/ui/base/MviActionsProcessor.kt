@@ -1,6 +1,7 @@
 package com.vnedomovnyi.randomusersmvi.ui.base
 
 import io.reactivex.rxjava3.core.*
+import timber.log.Timber
 
 abstract class MviActionsProcessor<A : MviAction, R : MviResult> : ObservableTransformer<A, R> {
 
@@ -75,7 +76,10 @@ fun <A : MviAction, R : MviResult> addObservableFeatures(
     }
 
     if (onErrorResult != null) {
-        observable = observable.onErrorReturn { t -> onErrorResult.invoke(t) }
+        observable = observable.onErrorReturn { t ->
+            Timber.e(t)
+            onErrorResult.invoke(t)
+        }
     }
 
     if (initialResult != null) {
