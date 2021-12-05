@@ -93,9 +93,6 @@ dependencies {
 
     implementation libraries.timber
 
-    testImplementation libraries.koinTest
-    testImplementation libraries.koinJUnit
-
     testImplementation libraries.mockitoKotlin
     testImplementation libraries.junit
     testImplementation libraries.mockitoCore
@@ -111,4 +108,7 @@ dependencies {
     androidTestImplementation libraries.dexMakerMockito
     androidTestImplementation libraries.espresso
     androidTestImplementation libraries.mockWebServer
+
+    androidTestImplementation libraries.koinTest
+    androidTestImplementation libraries.koinJUnit
 }

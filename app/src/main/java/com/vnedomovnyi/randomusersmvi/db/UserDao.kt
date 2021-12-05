@@ -16,6 +16,9 @@ interface UserDao {
     @Insert
     fun insert(users: List<User>): Completable
 
+    @Query("DELETE FROM users")
+    fun delete()
+
     @Query("DELETE FROM users WHERE id = :id")
     fun delete(id: Int)
 }

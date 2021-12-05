@@ -6,24 +6,35 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import com.vnedomovnyi.randomusersmvi.MainActivity
 import com.vnedomovnyi.randomusersmvi.R
+import com.vnedomovnyi.randomusersmvi.db.UserDao
 import espresso.recyclerViewShouldHaveItemCount
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.RuleChain
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
+import org.koin.test.KoinTest
+import org.koin.test.inject
 import rule.MockWebServerRule
 import rule.NeedsMockWebServer
 
 @RunWith(AndroidJUnit4::class)
-class UserListScreenTest {
+class UserListScreenTest : KoinTest {
+
+    val userDao: UserDao by inject()
 
     @get:Rule
-    val rules: TestRule = RuleChain.emptyRuleChain()
-        .around(MockWebServerRule(this))
-        .around(ActivityTestRule(MainActivity::class.java))
+    val rules: TestRule = MockWebServerRule(this)
+
+    @get:Rule
+    var tasksActivityTestRule: ActivityTestRule<MainActivity> =
+        object : ActivityTestRule<MainActivity>(MainActivity::class.java) {
+            override fun beforeActivityLaunched() {
+                super.beforeActivityLaunched()
+                userDao.delete()
+            }
+        }
 
     @Test
     @NeedsMockWebServer(setupMethods = ["enqueueSuccessfulResponse"])
