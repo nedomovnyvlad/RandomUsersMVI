@@ -58,12 +58,16 @@ class UserListFragment : Fragment() {
             adapter.submitList(viewState.users ?: emptyList())
 
             error?.consume {
-                Toast.makeText(requireContext(), "Error occurred", Toast.LENGTH_SHORT).show()
+                showToast(R.string.error_message)
             }
 
             deletedUserEvent?.consume {
-                Toast.makeText(requireContext(), "User has been deleted", Toast.LENGTH_SHORT).show()
+                showToast(R.string.delete_success_message)
             }
         }
+    }
+
+    private fun showToast(messageResId: Int) {
+        Toast.makeText(requireContext(), resources.getText(messageResId), Toast.LENGTH_SHORT).show()
     }
 }
