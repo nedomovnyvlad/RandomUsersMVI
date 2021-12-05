@@ -17,9 +17,7 @@ class UserListViewModel(
     ) {
 
     fun loadDataIfNeeded() {
-        if (viewState.users == null) {
-            accept(UserListAction.LoadUsersAction)
-        }
+        accept(UserListAction.LoadUsersAction)
     }
 
     fun deleteUser(userId: Int) {
