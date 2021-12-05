@@ -60,6 +60,10 @@ class UserListFragment : Fragment() {
             error?.consume {
                 Toast.makeText(requireContext(), "Error occurred", Toast.LENGTH_SHORT).show()
             }
+
+            deletedUserEvent?.consume {
+                Toast.makeText(requireContext(), "User has been deleted", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

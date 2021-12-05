@@ -34,6 +34,7 @@ class UserListActionProcessor(
             onErrorResult = ::ErrorResult
         ) { action ->
             deleteUser.invoke(action.userId)
+            onNextSafe(DeleteUserResult)
             onCompleteSafe()
         }
 }

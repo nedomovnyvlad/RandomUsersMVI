@@ -9,4 +9,6 @@ sealed class UserListResult : MviResult {
     data class ErrorResult(val t: Throwable) : UserListResult()
 
     data class LoadUsersResult(val users: List<User>) : UserListResult()
+
+    object DeleteUserResult : UserListResult()
 }

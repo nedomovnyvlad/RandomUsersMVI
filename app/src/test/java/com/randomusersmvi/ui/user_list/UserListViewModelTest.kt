@@ -72,6 +72,17 @@ class UserListViewModelTest {
         testObserver.assertValueAt(2) { it.error != null }
     }
 
+    @Test
+    fun deleteUserSuccessfulAttempt_showsMessage() {
+        `when`(loadUsers.invoke()).thenReturn(Observable.just(users))
+
+        val testObserver = createTestObserver()
+
+        userListViewModel.deleteUser(1)
+
+        testObserver.assertValueAt(1) { it.deletedUserEvent != null }
+    }
+
     private fun createTestObserver() = userListViewModel.viewStatesObservable.test()
 
 }
