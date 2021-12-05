@@ -16,15 +16,14 @@ class UserRepositoryImpl(
     override fun loadUsers(): Observable<List<User>> {
         return loadUsersFromCache()
             .filter { list -> list.isNotEmpty() }
-            .switchIfEmpty(loadUsersFromNetwork())
+            .switchIfEmpty(Single.defer { loadUsersFromNetwork() })
             .toObservable()
             .mergeWith(userDao.subscribe().skip(1))
     }
 
     private fun loadUsersFromNetwork(): Single<List<User>> {
-        return Single.fromCallable { userService.getUsers(USER_COUNT).execute() }
-            .map { it.body() }
-            .map { it!!.users.map { apiUser -> apiUser.toUser() } }
+        return userService.getUsers(USER_COUNT)
+            .map { it.users.map { apiUser -> apiUser.toUser() } }
             .flatMapCompletable { userDao.insert(it) }
             .andThen(loadUsersFromCache())
     }

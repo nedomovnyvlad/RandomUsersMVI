@@ -74,7 +74,7 @@ ext.libraries = [
 
         retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
         retrofitGsonConverter   : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
-        retrofitRxJavaAdapter   : "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$versions.retrofitRxJavaAdapter",
+        retrofitRxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava3:$versions.retrofit",
 
         rxAndroid               : "io.reactivex.rxjava3:rxandroid:$versions.rxAndroid",
         rxKotlin                : "io.reactivex.rxjava3:rxkotlin:$versions.rxKotlin",
